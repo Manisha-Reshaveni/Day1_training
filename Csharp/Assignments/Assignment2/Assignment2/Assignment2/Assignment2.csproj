@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Assignment2.RowsndColumns</StartupObject>
+    <StartupObject>Assignment2.Arrayintoanother</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
