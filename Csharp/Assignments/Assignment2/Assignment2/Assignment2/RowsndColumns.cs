@@ -13,26 +13,14 @@ namespace Assignment2
             int a;
            Console.WriteLine("ENTER A VALUE:");
             a = Convert.ToInt32(Console.ReadLine());
-            for (int s = 0; s < 4; s++)
+            for (int s = 0; s < 2; s++)
             {
-                if (s%2==0)
-                    for (int i = 0; i < 5; i++)
-                    {
-
-                        Console.Write(a + " ");
-
-                    }
-       
-                else
-                {
-                    for (int j = 0; j < 5; j++)
-                    {
-                        Console.Write(a);
-                    }
-                }
-                Console.WriteLine();
-
+                Console.WriteLine("{0} {0} {0} {0}", a, a, a, a);
+                Console.WriteLine("{0}{0}{0}{0}", a, a, a, a);
             }
+              
+
+            
         }
 
 
