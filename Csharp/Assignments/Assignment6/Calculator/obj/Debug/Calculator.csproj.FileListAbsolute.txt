@@ -1,0 +1,10 @@
+C:\Dotnet-training\Csharp\Assignments\Assignment6\Calculator\bin\Debug\Calculator.exe.config
+C:\Dotnet-training\Csharp\Assignments\Assignment6\Calculator\bin\Debug\Calculator.exe
+C:\Dotnet-training\Csharp\Assignments\Assignment6\Calculator\bin\Debug\Calculator.pdb
+C:\Dotnet-training\Csharp\Assignments\Assignment6\Calculator\bin\Debug\CalculatorLibrary.dll
+C:\Dotnet-training\Csharp\Assignments\Assignment6\Calculator\bin\Debug\CalculatorLibrary.pdb
+C:\Dotnet-training\Csharp\Assignments\Assignment6\Calculator\obj\Debug\Calculator.csproj.AssemblyReference.cache
+C:\Dotnet-training\Csharp\Assignments\Assignment6\Calculator\obj\Debug\Calculator.csproj.CoreCompileInputs.cache
+C:\Dotnet-training\Csharp\Assignments\Assignment6\Calculator\obj\Debug\Calculator.csproj.CopyComplete
+C:\Dotnet-training\Csharp\Assignments\Assignment6\Calculator\obj\Debug\Calculator.exe
+C:\Dotnet-training\Csharp\Assignments\Assignment6\Calculator\obj\Debug\Calculator.pdb
