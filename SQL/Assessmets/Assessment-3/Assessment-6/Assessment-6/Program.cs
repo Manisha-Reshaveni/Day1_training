@@ -21,19 +21,22 @@ namespace Assessment_6
                 using (SqlCommand cmd = new SqlCommand("sp_products", con))
                 {
 
-                    cmd.Parameters.Add(new SqlParameter("@ename", SqlDbType.VarChar, 10)).Value = "manisha";
-                    cmd.Parameters.Add(new SqlParameter("@price", SqlDbType.Int)).Value = 5000;
-                 
-                    SqlParameter param1 = new SqlParameter("@pid", SqlDbType.Int);
-                    param1.Direction = ParameterDirection.Output;
-                    cmd.Parameters.Add(param1);
-                    SqlParameter param2 = new SqlParameter("@discount", SqlDbType.Float);
-                    param2.Direction = ParameterDirection.Output;
-                    cmd.Parameters.Add(param2);
-                    cmd.ExecuteNonQuery();
-                    int product_id = Convert.ToInt32(cmd.Parameters["@pid"].Value);
-                    int discount = Convert.ToInt32(cmd.Parameters["@discount"].Value);
-                    Console.WriteLine($"Product ID : {product_id}  ,  Discount Price : {discount}");
+                    Console.WriteLine("Enter the product id:");
+                    int Product_Id = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Enter the Product_name:");
+                    String Product_Name = Console.ReadLine();
+                    Console.WriteLine("Enter the Product price:");
+                    float Price = Convert.ToSingle(Console.ReadLine());
+                    Console.WriteLine("Enter the discounted Price:");
+                    float Discounted_Price = Convert.ToSingle(Console.ReadLine());
+                    Discounted_Price =Price-0.10f;
+
+
+
+                    cmd.Parameters.Add(new SqlParameter("@productId", SqlDbType.Int)).Value = Product_Id;
+                    cmd.Parameters.Add(new SqlParameter("@productName", SqlDbType.VarChar, 40)).Value = Product_Name;
+                    cmd.Parameters.Add(new SqlParameter("@Price", SqlDbType.Float)).Value = Price;
+                    cmd.Parameters.Add(new SqlParameter("@DiscountedPrice", SqlDbType.Float)).Value = Discounted_Price;
 
                 }
             }

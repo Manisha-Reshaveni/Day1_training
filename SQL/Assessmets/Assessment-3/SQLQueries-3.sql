@@ -38,7 +38,7 @@ begin
  end
  rollback
 
-INSERT INTO Courses Values('DJ005','Java','2018-03-02','2018-04-20',4000)
+INSERT INTO Courses Values('DJ007','Java','2018-03-02','2018-04-20',4000)
 select * from Courses
 -------------------------------------------
 --Write a stored Procedure that inserts records in the ProductsDetails table
@@ -51,7 +51,7 @@ ProductName varchar(20),
 Price float,
 DiscountedPrice as (price-Price*0.10) 
 )
-	insert  into Product_Details values(1,'manisha',5000)
+	insert  into Product_Details values(1,'bag',5000)
 create or alter  procedure sp_products 
 as
 begin
@@ -67,7 +67,7 @@ declare @ProductName varchar(20),@price float,@productID int
 	exec sp_products
 	select * from Product_Details
 
-	insert  into Product_Details (productname,price) values(5,'ali',2000)
+	insert  into Product_Details (productname,price) values(5,'book',2000)
 
 
 
