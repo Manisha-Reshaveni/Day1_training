@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <label for="num1">1st Number:</label>
+    <input type="number" id="num1">
+    <br /><br />
+    <label for="num2">2nd Number:</label>
+    <input type="number" id="num2">
+    <br /><br />
+    <button id="multiply">Multiply</button>
+    <button id="divide">Divide</button>
+    <br /><br />
+    <div id="result"></div>
+    <hr />  <hr />
+
+
+    <script>
+        // Function to perform multiplication
+        function multiply(num1, num2) {
+            var result = num1 * num2;
+            return result;
+
+        }
+        const multiplyButton = document.getElementById('multiply').addEventListener("click", function () {
+            var num1 = parseInt(document.getElementById('num1').value);
+            var num2 = parseInt(document.getElementById('num2').value);
+            var result = multiply(num1, num2);
+            document.getElementById('result').innerHTML = "The Result is:" + result;
+        })
+        //Function to perform division
+        function Divide(num1, num2) {
+            var result = num1 / num2;
+            return result;
+
+        }
+        const divisionButton = document.getElementById('divide').addEventListener("click", function () {
+            var num1 = parseInt(document.getElementById('num1').value);
+            var num2 = parseInt(document.getElementById('num2').value);
+            if (num2 === 0) {
+                document.getElementById('result').innerHTML = "Cannot divide by zero!";
+            } else {
+                var result = Divide(num1, num2);
+                var result = Divide(num1, num2);
+                document.getElementById('result').innerHTML = "The Result for didision of two numbers:" + result;
+              
+            }
+
+        })
+
+
+        //Write a JavaScript for loop that will iterate from 0 to 15. For each iteration,
+        //it will check if the current number is odd or even, and display a message to the screen.
+        for (var i = 0; i <= 15; i++) {
+            if (i % 2 === 0) {
+                document.write(i + " " + "is even number<br/>");
+            }
+            else {
+                document.write(i + " " + "is Odd number<br/>");
+            }
+        }
+    </script>
+
+</body>
+</html>
