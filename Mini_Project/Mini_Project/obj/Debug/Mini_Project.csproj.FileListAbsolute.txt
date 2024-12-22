@@ -1,0 +1,7 @@
+C:\Dotnet-training\Mini_Project\Mini_Project\bin\Debug\Mini_Project.exe.config
+C:\Dotnet-training\Mini_Project\Mini_Project\bin\Debug\Mini_Project.exe
+C:\Dotnet-training\Mini_Project\Mini_Project\bin\Debug\Mini_Project.pdb
+C:\Dotnet-training\Mini_Project\Mini_Project\obj\Debug\Mini_Project.csproj.AssemblyReference.cache
+C:\Dotnet-training\Mini_Project\Mini_Project\obj\Debug\Mini_Project.csproj.CoreCompileInputs.cache
+C:\Dotnet-training\Mini_Project\Mini_Project\obj\Debug\Mini_Project.exe
+C:\Dotnet-training\Mini_Project\Mini_Project\obj\Debug\Mini_Project.pdb
