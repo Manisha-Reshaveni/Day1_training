@@ -29,7 +29,7 @@ namespace ASP_Assignment1
         protected void Button1_Click(object sender, EventArgs e)
         {
            
-            if (!Page.IsValid)
+            if (Page.IsValid)
             {
                 lblmsg.Text = "All validations passed successfully!";
                 lblmsg.ForeColor = System.Drawing.Color.Green;
