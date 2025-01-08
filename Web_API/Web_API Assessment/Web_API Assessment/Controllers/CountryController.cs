@@ -15,15 +15,15 @@ namespace Web_API_Assessment.Controllers
 
         public CountryController()
         {
-            countries.Add(new Country { ID = 1, CountryName = "USA", Capital = "Washington D.C." });
+            countries.Add(new Country { ID = 1, CountryName = "Japan", Capital = "Tokyo" });
             countries.Add(new Country { ID = 2, CountryName = "Canada", Capital = "Ottawa" });
-            countries.Add(new Country { ID = 3, CountryName = "Mexico", Capital = "Mexico City" });
+            countries.Add(new Country { ID = 3, CountryName = "USA", Capital = "Washington " });
         }
 
 
         [HttpGet]
         [Route("All")]
-        public HttpResponseMessage GetAllPGetAllCountries()
+        public HttpResponseMessage GetAllCountries()
         {
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, countries);
             return response;
