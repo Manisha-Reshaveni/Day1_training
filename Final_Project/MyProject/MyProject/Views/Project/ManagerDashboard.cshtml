@@ -1,0 +1,139 @@
+﻿@model MyProject.Models.ManagerLogin
+@{ ViewBag.Title = "Manager Dashboard"; }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Slide-In Effect */
+        @@keyframes slideIn {
+            0% { transform: translateY(-20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #9face6);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            animation: slideIn 0.8s ease-in-out;
+            background-color:aqua;
+        }
+
+        .logout-button {
+            background-color: blueviolet;
+            color: #fff;
+            font-size: 16px;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .logout-button:hover {
+            background-color: #66bb6a;
+        }
+
+        .jumbotron {
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('path_to_image.jpg') center/cover no-repeat;
+            color: #fff;
+            text-align: center;
+            padding: 30px;
+            border-radius: 12px;
+        }
+
+        .dashboard-content {
+            margin-top: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+           
+        }
+
+        table th, table td {
+            padding: 10px;
+            border: 2px solid black;
+            text-align: left;
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .action-button {
+            flex: 1 1 calc(33.33% - 10px);
+           
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            padding: 15px 10px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .action-button:hover {
+            background-color: #1e88e5;
+        }
+
+        @@media (max-width: 768px) {
+            .action-button {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="@Url.Action("Index", "Project")" class="logout-button float-right">Logout</a>
+        <div class="jumbotron">
+            <h2>Welcome, @Model.Name!</h2>
+            <p>Manager Dashboard</p>
+        </div>
+        <div class="dashboard-content">
+            <h3>Login Manager Details</h3>
+            <table>
+                <tr><th>ID</th><td>@Model.ManagerID</td></tr>
+                <tr><th>Designation</th><td>@Model.Designation</td></tr>
+                <tr><th>Status</th><td>@Model.Status</td></tr>
+                <tr><th>Email</th><td>@Model.Email</td></tr>
+                <tr><th>Phone</th><td>@Model.Phone</td></tr>
+                <tr><th>Grade</th><td>@Model.Grade</td></tr>
+            </table>
+        </div>
+        <div class="action-buttons">
+            <a style="background-color: red" href="@Url.Action("Addattendence", "Manager")" class="action-button">My Timesheet</a>
+            <a style="background-color: dodgerblue" href="@Url.Action("Index", "Timesheets")" class="action-button">My Team Timesheet</a>
+            <a style="background-color: orange"  href="@Url.Action("ManagerApplyLeave", "ManagerLeave")" class="action-button">Apply Leaves</a >
+            <a style="background-color: deeppink" href="@Url.Action("PendingLeaveApproval", "Leave")" class="action-button">My Team Leaves</a>
+            <a style="background-color: saddlebrown" href="@Url.Action("EmployeeIndex", "Project")" class="action-button">Employee Details</a>
+            <a style="background-color: greenyellow" href="@Url.Action("ProjectIndex", "Project")" class="action-button">Project Details</a>
+        </div>
+    </div>
+
+    </body>
+</html>

@@ -1,0 +1,145 @@
+﻿@model MyProject.Models.ProjectDetails
+
+@{
+    ViewBag.Title = "ProjectCreate";
+}
+
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: linear-gradient(120deg, #185a9d, #43cea2); /* Gradient background */
+        color: black; /* Light text color */
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+    }
+
+    h2 {
+        color: black; /* Greenish text color */
+        font-size: 3em; /* Larger font size */
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .form-container {
+        background: white; /* Gradient background */
+        color: black; /* Light text color */
+        border-radius: 8px;
+        padding: 40px;
+        width: 60%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow around the form */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid black;
+    }
+
+        .form-container h4 {
+            color: #5C8374; /* Greenish text color */
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+    .form-group {
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    .control-label {
+        color: black; /* Light label text color */
+        font-weight: bold;
+        display: block;
+        font-size: medium;
+    }
+
+    .form-control {
+        background-color: #040D12; /* Dark background for input fields */
+        color: #93B1A6; /* Light text color */
+        border: 1px solid #183D3D; /* Border color */
+        padding: 12px;
+        border-radius: 6px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+        .form-control:focus {
+            border-color: #5C8374; /* Focus border color */
+            box-shadow: 0 0 8px rgba(92, 131, 116, 0.6); /* Focus shadow */
+        }
+
+    .btn-default {
+        background-color: forestgreen; /* Greenish button color */
+        color: black; /* Dark button text color */
+        border: 1px solid #93B1A6; /* Border color */
+        padding: 12px 30px;
+        font-size: 16px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        display: block;
+        width: 100%; /* Full width button */
+    }
+
+        .btn-default:hover {
+            background-color: deepskyblue; /* Lighter hover color */
+            color: black; /* Dark text on hover */
+        }
+
+    .text-danger {
+        color: #FF6363; /* Red error text color */
+        font-size: 0.9em;
+    }
+
+    .back-to-list {
+        margin-top: 20px;
+        color: #5C8374; /* Greenish text color for the back-to-list link */
+        font-size: 1.2em;
+        text-decoration: none;
+        display: block;
+        text-align: center;
+        transition: color 0.3s ease;
+    }
+
+        .back-to-list:hover {
+            color: #93B1A6; /* Lighter color on hover */
+        }
+</style>
+
+<h2>ProjectCreate</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+    
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProjectName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProjectName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProjectName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "ProjectIndex", null, new { @class = "back-to-list" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

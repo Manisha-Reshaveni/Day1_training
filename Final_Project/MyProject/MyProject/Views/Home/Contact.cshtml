@@ -1,0 +1,271 @@
+﻿@{ ViewBag.Title = "Contact Us"; }
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+        /* Updated Design and Template */
+
+        /* Background Gradient */
+        body {
+            padding: 20px;
+            background-color: lightseagreen;
+            /* Gradient background */
+            font-family: 'Roboto', sans-serif;
+            color: black; /* Light text color */
+            overflow-x: hidden; /* Prevent horizontal scroll during animation */
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.8);
+            position: sticky;
+            top: 0;
+            z-index: 1020;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transform: translateY(-100%);
+            animation: slideDown 1s ease-out forwards;
+        }
+
+        .navbar-brand {
+            color: #fff !important;
+            font-weight: bold;
+            font-size: 26px;
+            text-decoration: none;
+        }
+
+            .navbar-brand:hover {
+                color: #43cea2 !important;
+            }
+
+        /* Navbar Links */
+        .navbar-nav {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+            .navbar-nav .nav-item {
+                margin-left: 20px;
+            }
+
+            .navbar-nav .nav-link {
+                color: #fff !important;
+                font-size: 18px;
+                text-transform: uppercase;
+                position: relative;
+                text-decoration: none;
+                opacity: 0;
+                transform: translateX(50px);
+                animation: slideIn 1s ease-out forwards;
+            }
+
+                .navbar-nav .nav-link:nth-child(1) {
+                    animation-delay: 0.3s;
+                }
+
+                .navbar-nav .nav-link:nth-child(2) {
+                    animation-delay: 0.6s;
+                }
+
+                .navbar-nav .nav-link:nth-child(3) {
+                    animation-delay: 0.9s;
+                }
+
+                .navbar-nav .nav-link:hover {
+                    color: #43cea2 !important;
+                }
+
+        /* Buttons Styling */
+        .back-button {
+            background-color: #43cea2;
+            color: #fff;
+            padding: 8px 15px; /* Reduced padding for a smaller size */
+            font-size: 14px; /* Reduced font size */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+            margin: 0 auto; /* Center the button horizontally */
+            display: inline-block; /* Allows centering when using margin auto */
+        }
+
+            .back-button:hover,
+            .back-button:focus {
+                background-color: #185a9d;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+                transform: scale(1.05); /* Slight zoom effect */
+            }
+
+        /* To ensure the button appears centered at the last line */
+        .back-button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Table Styling */
+        .table th, .table td {
+            text-align: center;
+        }
+
+        .thead-dark th {
+            background-color: #040D12; /* Dark header */
+        }
+
+        .table-bordered, .table-bordered th, .table-bordered td {
+            border-color: #183D3D; /* Greenish border */
+        }
+
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: #040D12; /* Dark rows */
+        }
+
+        /* Jumbotron for Highlights */
+        .jumbotron {
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            padding: 50px 20px;
+            border-radius: 10px;
+            margin: 40px auto;
+            text-align: center;
+            max-width: 900px;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeSlideIn 1.2s ease-out forwards;
+        }
+
+            .jumbotron h1 {
+                font-size: 48px;
+                margin-bottom: 20px;
+                font-weight: bold;
+            }
+
+            .jumbotron p {
+                font-size: 18px;
+                margin-bottom: 30px;
+            }
+
+        /* Footer */
+        footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .back-button {
+            background-color: dodgerblue;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+            display: block;
+            text-align: center;
+            text-decoration: none;
+        }
+
+            .back-button:hover, .back-button:focus {
+                background-color: #185a9d;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+                transform: scale(1.05); /* Slight zoom effect */
+                color: black;
+            }
+
+        footer p {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        /* Keyframes for Animations */
+        @@keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @@keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @@keyframes fadeSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container contact-container">
+        <h2>@ViewBag.Title</h2>
+        <h3>@ViewBag.Message</h3>
+
+        <address>
+            <strong>Support Email:</strong> <a href="mailto:support@myproject.com">support@myattendence&leaveproject.com</a><br />
+            <strong>Marketing Email:</strong> <a href="mailto:marketing@myproject.com">marketingproject@myproject.com</a>
+        </address>
+
+        <div class="contact-info">
+            <h3>For any inquiries or assistance:</h3>
+            <p>Email: <a href="mailto:info@myproject.com">info@myproject.com</a></p>
+            <p>Phone: +91 7095480053</p>
+        </div>
+
+        <div class="team-members">
+            <h3>Our Team</h3>
+            <div class="team-member">
+                <p>Arthi: <a href="mailto:arthim@infinite.com">Arthi@myproject.com</a></p>
+            </div>
+            <div class="team-member">
+                <p>Hari: <a href="mailto:harik@myproject.com">Hari@myproject.com</a></p>
+            </div>
+            <div class="team-member">
+                <p>Manisha: <a href="mailto:manishar@myproject.com">Manisha@myproject.com</a></p>
+            </div>
+            <div class="team-member">
+                <p>Nikhil: <a href="mailto:nikhilv@myproject.com">Nikhil@myproject.com</a></p>
+            </div>
+            <div class="team-member">
+                <p>Pradheep: <a href="mailto:Pradheepn@myproject.com">Pradheep@myproject.com</a></p>
+            </div>
+            <div class="team-member">
+                <p>Somashekar: <a href="mailto:somashekarp@myproject.com">Somashekar@myproject.com</a></p>
+            </div>
+            <a style="width:80px" href="@Url.Action("Index", "Project")" class="back-button">Back</a>
+        </div>
+    </div>
+</body>
+</html>

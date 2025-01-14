@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance and Leave Management</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(120deg, #185a9d, #43cea2);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Prevents horizontal scroll during animation */
+        }
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.8);
+            position: sticky;
+            top: 0;
+            z-index: 1020;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transform: translateY(-100%);
+            animation: slideDown 1s ease-out forwards;
+        }
+        .navbar-brand {
+            color: #fff !important;
+            font-weight: bold;
+            font-size: 26px;
+            text-decoration: none;
+        }
+        .navbar-brand:hover {
+            color: #43cea2 !important;
+        }
+        .navbar-nav {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar-nav .nav-item {
+            margin-left: 20px;
+        }
+        .navbar-nav .nav-link {
+            color: #fff !important;
+            font-size: 18px;
+            text-transform: uppercase;
+            position: relative;
+            text-decoration: none;
+            opacity: 0;
+            transform: translateX(50px);
+            animation: slideIn 1s ease-out forwards;
+        }
+        .navbar-nav .nav-link:nth-child(1) {
+            animation-delay: 0.3s;
+        }
+        .navbar-nav .nav-link:nth-child(2) {
+            animation-delay: 0.6s;
+        }
+        .navbar-nav .nav-link:nth-child(3) {
+            animation-delay: 0.9s;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #43cea2 !important;
+        }
+        .navbar-nav .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background-color: #43cea2;
+            transition: width 0.3s;
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+        }
+        .navbar-nav .nav-link:hover::after {
+            width: 100%;
+        }
+        .jumbotron {
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            padding: 50px 20px;
+            border-radius: 10px;
+            margin: 40px auto;
+            text-align: center;
+            max-width: 900px;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeSlideIn 1.2s ease-out forwards;
+        }
+        .jumbotron h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .jumbotron p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        .button-container {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .login-button {
+            background-color: #43cea2;
+            color: #fff;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+        .login-button:hover {
+            background-color: #185a9d;
+            color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+        footer p {
+            margin: 0;
+            font-size: 16px;
+        }
+        /* Keyframes for animations */
+        @@keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+        @@keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        @@keyframes fadeSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a class="navbar-brand" href="#">Home</a>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Contact", "Home")">Contact</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("About", "Home")">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("SignUpManager", "Project")">Manager Signup</a>
+            </li>
+        </ul>
+
+    </nav>
+    <!-- Jumbotron -->
+    <div class="jumbotron">
+        <h1>Welcome to Attendance and Leave Management</h1>
+        <p>Manage your attendance and leave records effortlessly!</p>
+        <div class="button-container">
+            <a href="@Url.Action("EmployeeLogin", "Project")" class="btn login-button" style="background-color: #43cea2; color: #fff; text-transform: uppercase; text-decoration: none; padding: 15px 40px; font-size: 18px; font-weight: bold; border: none; border-radius: 5px; transition: all 0.3s ease;">Employee Login</a>
+            <a href="@Url.Action("ManagerLogin", "Project")" class="btn login-button" style="background-color: #43cea2; color: #fff; text-transform: uppercase; text-decoration: none; padding: 15px 40px; font-size: 18px; font-weight: bold; border: none; border-radius: 5px; transition: all 0.3s ease;">Manager Login</a>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Infinite. All rights reserved.</p>
+    </footer>
+</body>
+</html>

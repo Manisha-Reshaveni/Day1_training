@@ -1,0 +1,83 @@
+﻿@model IEnumerable<MyProject.Models.ManagerTimesheet>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    body {
+        background-color: linear-gradient(120deg, #185a9d, #43cea2);
+        font-family: 'Arial', sans-serif;
+        color: #93B1A6;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: #040D12;
+        color: #93B1A6;
+    }
+
+    th, td {
+        border: 1px solid #93B1A6;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #183D3D;
+    }
+
+    .action-links {
+        text-decoration: none;
+        margin-right: 10px;
+        color: #93B1A6;
+    }
+
+    .create-link {
+        display: block;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        text-decoration: none;
+        background-color: #5C8374;
+        color: #040D12;
+        padding: 10px;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+    h2 {
+        color: black;
+        text-align: center;
+    }
+
+    .btn-primary {
+        background-color: #43cea2;
+        color: #040D12;
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        font-weight: bold;
+        text-decoration: none;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+        .btn-primary:hover {
+            background-color: #93B1A6;
+            color: #040D12;
+        }
+</style>
+
+<body>
+    <h2>Your Timesheet Submitted Successfully...!!!</h2>
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <a href="@Url.Action("ManagerDashboard", "Project")" class="btn btn-primary btn-lg btn-block action-button">
+                Return To Dashboard
+            </a>
+        </div>
+    </div>
+</body>
+    

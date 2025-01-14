@@ -1,0 +1,210 @@
+﻿
+@model MyProject.Models.ManagerLogin
+
+@{
+                ViewBag.Title = "SignUpManager";
+
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+/* Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(120deg, #185a9d, #43cea2); /* Gradient background */
+    color: #fff;
+    text-align: center;
+    padding: 50px;
+    margin: 0;
+    overflow-x: hidden; /* Prevents horizontal scroll during animation */
+}
+
+/* Headings */
+h2 {
+    color: black;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+/* Form Container */
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color:linear-gradient(120deg, #185a9d, #43cea2); /* Semi-transparent dark background */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+            animation: fadeSlideIn 1s ease-out forwards; /* Sliding effect */
+            opacity: 0;
+            transform: translateY(50px);
+            border:2px solid black;
+        }
+
+/* Form Labels */
+label {
+    display: block;
+    margin: 15px 0 5px;
+    font-weight: bold;
+    color: #43cea2;
+    text-align: left;
+}
+
+/* Form Inputs */
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    background-color: #040D12; /* Dark input background */
+    color: #fff;
+    border: 1px solid #5C8374;
+    border-radius: 5px;
+}
+
+/* Submit Button */
+        button {
+            background-color: #43cea2;
+            color: #fff;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+            button:hover {
+                background-color: #185a9d ;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            }
+
+/* Validation Errors */
+.validation-summary-errors,
+.field-validation-error {
+    color: #e74c3c;
+    font-weight: bold;
+    text-align: left;
+}
+
+/* Back Button */
+.back-button {
+    background-color: #185a9d;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: absolute;
+    top: 10px;
+    left: 10px; /* Moved to the opposite side (left corner) */
+    text-decoration: none;
+}
+
+.back-button:hover,
+.back-button:focus {
+    background-color: #43cea2;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Animations */
+@@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+    </style>
+
+
+</head>
+
+<body>
+
+    <a href="@Url.Action("Index", "Project")" class="back-button">Back</a>
+
+    <h2>Manager Signup</h2>
+
+    @using (Html.BeginForm("SignUpManager", "Project", FormMethod.Post, new { autocomplete = "off" }))
+
+    {
+
+        @Html.AntiForgeryToken()
+
+                        <form>
+
+                            <label for="ManagerID">ManagerID</label>
+
+                            @Html.TextBoxFor(model => model.ManagerID, new { autocomplete = "off" })
+
+                            @Html.ValidationMessageFor(model => model.ManagerID, "", new { @class = "text-danger" })
+
+                            <label for="Username">Username</label>
+
+                            @Html.TextBoxFor(model => model.Name, new { autocomplete = "off" })
+
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+                            <label for="Email">Email</label>
+
+                            @Html.TextBoxFor(model => model.Email, new { autocomplete = "off" })
+
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+                            <label for="Phone">Phone</label>
+
+                            @Html.TextBoxFor(model => model.Phone, new { autocomplete = "off" })
+
+                            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+
+                            <label for="Status">Status</label>
+
+                            @Html.TextBoxFor(model => model.Status, new { autocomplete = "off" })
+
+                            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+
+                            <label for="Grade">Grade</label>
+
+                            @Html.TextBoxFor(model => model.Grade, new { autocomplete = "off" })
+
+                            @Html.ValidationMessageFor(model => model.Grade, "", new { @class = "text-danger" })
+
+                            <label for="Designation">Designation</label>
+
+                            @Html.TextBoxFor(model => model.Designation, new { autocomplete = "off" })
+
+                            @Html.ValidationMessageFor(model => model.Designation, "", new { @class = "text-danger" })
+
+                            <label for="Password">Password</label>
+
+                            @Html.PasswordFor(model => model.Password, new { autocomplete = "off" })
+
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+                            <button type="submit">Sign Up</button>
+
+                        </form>
+                                    }
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

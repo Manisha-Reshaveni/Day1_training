@@ -1,0 +1,61 @@
+﻿@model MyProject.Models.ManagerLeave
+
+@{
+    ViewBag.Title = "ManagerLeaveIndex";
+}
+
+<style>
+    body {
+        background: linear-gradient(120deg, #74ebd5, #ACB6E5); /*  background */
+             
+        font-family: 'Arial', sans-serif;
+        color: #93B1A6;
+    }
+
+    h2 {
+        color: #5C8374;
+        font-size: 2.5em;
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    .row {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .col-md-4 {
+        width: 50%;
+    }
+
+    .btn-primary {
+        background-color: #5C8374;
+        color: #040D12;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.2em;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: lightgreen;
+        }
+</style>
+
+<body>
+    <h2>Your Leave Submitted Successfully...!!!</h2>
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <a href="@Url.Action("ManagerDashboard", "Project")" class="btn btn-primary btn-lg btn-block action-button">
+                Return To Dashboard
+            </a>
+        </div>
+    </div>
+</body>

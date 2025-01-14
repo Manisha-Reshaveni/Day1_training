@@ -1,0 +1,129 @@
+﻿@model IEnumerable<MyProject.Models.EmployeeDetails>
+@{ ViewBag.Title = "EmployeeIndex"; }
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: linear-gradient(120deg, #185a9d, #43cea2);
+        color: #93B1A6;
+        padding: 20px;
+        font-family: 'Arial', sans-serif;
+    }
+
+    h2 {
+        color: black;
+        font-size: 2em;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 50px;
+        background-color: linear-gradient(120deg, #185a9d, #43cea2);
+        color: black;
+    }
+
+    th, td {
+        border: 2px solid black;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: black;
+        color: white;
+    }
+
+    a {
+        color: white;
+        margin-right: 10px;
+        font-size: 1.2em;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+        a:hover {
+            color: #93B1A6;
+        }
+
+    /* Edit, Details, Delete link colors */
+    .action-links.edit {
+        color: darkgreen; /* Green for Edit */
+    }
+
+    .action-links.details {
+        color: darkblue; /* Blue for Details */
+    }
+
+    .action-links.delete {
+        color: #f44336; /* Red for Delete */
+    }
+
+    /* Back Button */
+    .back-button {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background-color: #4caf50;
+        color: #040D12;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .back-button:hover {
+            background-color: #185a9d;
+            color: #FFFFFF;
+        }
+
+    /* Create New Button */
+    .create-button {
+        float: right;
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .create-button:hover {
+            background-color: #3e8e41;
+        }
+        p{
+            margin-bottom:20px;
+        }
+</style>
+
+<h2>EmployeeIndex</h2>
+<p>
+    @Html.ActionLink("Create New", "EmployeeCreate")
+</p>
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Employeename)</th>
+        <th>@Html.DisplayNameFor(model => model.Grade)</th>
+        <th>@Html.DisplayNameFor(model => model.Designation)</th>
+        <th>Actions</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>@Html.DisplayFor(modelItem => item.Employeename)</td>
+    <td>@Html.DisplayFor(modelItem => item.Grade)</td>
+    <td>@Html.DisplayFor(modelItem => item.Designation)</td>
+    <td>
+        @Html.ActionLink("Edit", "EmployeeEdit", new { id = item.EmpID }, new { @class = "action-links edit" }) |
+        @Html.ActionLink("Details", "EmployeeDisplay", new { id = item.EmpID }, new { @class = "action-links details" }) |
+        @Html.ActionLink("Delete", "EmployeeDelete", new { id = item.EmpID }, new { @class = "action-links delete" })
+    </td>
+</tr>}
+</table>
+
+<a href="@Url.Action("ManagerDashboard", "Project")" class="back-button">Back</a>

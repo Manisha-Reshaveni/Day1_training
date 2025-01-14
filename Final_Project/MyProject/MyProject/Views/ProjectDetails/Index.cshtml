@@ -1,0 +1,30 @@
+﻿@model IEnumerable<MyProject.Models.ProjectDetails>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>Project ID</th>
+        <th>Project Name</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>@item.ProjectID</td>
+        <td>@item.ProjectName</td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

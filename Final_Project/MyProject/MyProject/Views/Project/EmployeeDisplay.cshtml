@@ -1,0 +1,107 @@
+﻿@model MyProject.Models.EmployeeDetails
+
+@{
+    ViewBag.Title = "EmployeeDisplay";
+}
+
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: linear-gradient(120deg, #185a9d, #43cea2); /* Gradient background */
+        color: black; /* Light text color */
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+    }
+    p {
+  
+    color:black;
+   
+    }
+    h2 {
+        color: black;
+        font-size: 2.5em; /* Increased font size for h2 */
+    } 
+    h4 {
+        color: black;
+       /* Increased font size for h2 */
+    }
+
+    dl {
+        background: linear-gradient(120deg, #185a9d, #43cea2); /* Gradient background */
+        color: #93B1A6;
+        border: 2px solid #183D3D;
+        border-radius: 5px;
+        padding: 20px;
+        margin-top: 20px;
+       
+    }
+
+    dt {
+        color: black;
+        font-weight: bold;
+        font-size: 1.5em; /* Increased font size for dt */
+    }
+
+    dd {
+        margin-left: 0;
+        margin-bottom: 10px;
+        font-size: 1.2em; /* Increased font size for dd */
+        color:white;
+    }
+
+    a {
+        color: #5C8374;
+        margin-right: 10px;
+        font-size: 1.5em; /* Increased font size for links */
+    }
+    .back-to-list {
+        margin-top: 20px;
+        color: black;
+        font-size: 1.2em;
+    }
+        a:hover {
+            color: #93B1A6;
+        }
+     
+</style>
+
+<h2>Employee Display</h2>
+
+<div>
+    <h4>Employee Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Employeename)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employeename)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Grade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Grade)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Designation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Designation)
+        </dd>
+
+    </dl>
+</div>
+<p>
+   
+    @Html.ActionLink("Back to List", "EmployeeIndex", new { @class = "back-to-list" })
+</p>
