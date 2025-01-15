@@ -1,0 +1,124 @@
+﻿@model IEnumerable<MyProject.Models.ProjectDetails>
+
+@{ ViewBag.Title = "ProjectIndex"; }
+
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: linear-gradient(120deg, #185a9d, #43cea2); /* Gradient background */
+        color: black; /* Light text color */
+        padding: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 100vh;
+    }
+
+    h2 {
+        color: black;
+        font-size: 3.5em;
+        margin-bottom: 20px;
+    }
+
+    .table {
+        width: 70%;
+        margin-top: 20px;
+        background-color: ghostwhite;
+        color: black;
+        border: 2px solid black;
+        border-radius: 8px;
+    }
+
+    th {
+        background-color: black;
+        color: white;
+        text-align: center;
+        font-size: 1.5em;
+    }
+
+    td {
+        text-align: center;
+        font-size: 1.2em;
+    }
+    /* Link as button */
+    a {
+        color: #93B1A6;
+        margin: 0 5px;
+        font-size: 1.2em;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        display: inline-block;
+        transition: background-color 0.3s ease;
+    }
+
+        a:hover {
+            color: #040D12;
+        }
+
+    /* Specific button styles */
+    .btn-edit {
+        background-color: dodgerblue; /* Blue */
+    }
+
+        .btn-edit:hover {
+            background-color: #3C6B53;
+        }
+
+    .btn-delete {
+        background-color: #B13636; /* Red */
+    }
+
+        .btn-delete:hover {
+            background-color: #A72F2F;
+        }
+
+    .btn-details {
+        background-color: darkgreen; /* Green */
+    }
+
+        .btn-details:hover {
+            background-color: #4A7A3B;
+        }
+
+    .btn-create, .btn-back {
+        background-color: forestgreen; /* Same as Back to List */
+        color: black;
+    }
+
+        .btn-create:hover, .btn-back:hover {
+            background-color: deepskyblue;
+            color: black;
+        }
+
+    /* Button margins */
+    .btn-back, .btn-create {
+        margin-top: 20px;
+    }
+</style>
+
+<h2>ProjectIndex</h2>
+
+<p>
+    <a href="@Url.Action("ProjectCreate")" class="btn-create">Create New</a>
+</p>
+
+<table class="table">
+    <tr>
+        <th> @Html.DisplayNameFor(model => model.ProjectName) </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td> @Html.DisplayFor(modelItem => item.ProjectName) </td>
+    <td>
+        <a href="@Url.Action("ProjectEdit", new { id = item.ProjectID })" class="btn-edit">Edit</a> |
+        <a href="@Url.Action("ProjectDisplay", new { id = item.ProjectID })" class="btn-details">Details</a> |
+        <a href="@Url.Action("ProjectDelete", new { id = item.ProjectID })" class="btn-delete">Delete</a>
+    </td>
+</tr>}
+</table>
+
+<a href="@Url.Action("ManagerDashboard")" class="btn-back">Back</a>

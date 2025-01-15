@@ -1,0 +1,215 @@
+﻿@model MyProject.Models.ManagerTimesheet
+
+@{ ViewBag.Title = "Addattendance"; }
+<style>
+
+    body {
+        background: linear-gradient(120deg, #74ebd5, #ACB6E5); /* Light gradient */
+
+        font-family: 'Roboto', sans-serif;
+        color: #333; /* Neutral text color for better contrast */
+
+        margin: 0;
+        padding: 50px;
+        position: relative;
+        animation: slideIn 0.5s ease-out; /* Apply sliding animation */
+    }
+
+    h1 {
+        color: #185a9d; /* Darker color for emphasis */
+
+        font-size: 3em;
+        text-align: center;
+        margin: 20px 0;
+    }
+
+    .container {
+        background-color: #F0F8FF; /* Light blue background */
+
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 50px;
+    }
+
+    h2 {
+        color: #185a9d; /* Dark blue for headers */
+
+        text-align: center;
+    }
+
+    .alert-success {
+        background-color: forestgreen; /* Light green for success alerts */
+
+        border-color: #c3e6cb;
+        color: white;
+        padding: 10px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-weight: bold;
+        color: #333; /* Neutral label color */
+    }
+
+    input[type="text"],
+    input[type="date"],
+    select,
+    textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        display: inline-block;
+        border: 1px solid #ccc; /* Light gray border */
+
+        border-radius: 5px;
+        box-sizing: border-box;
+        background-color: #f9f9f9; /* Light input background */
+
+        color: #333; /* Neutral text color */
+    }
+
+    input[type="submit"] {
+        background-color: #74ebd5; /* Light green button */
+
+        color: #185a9d; /* Text color */
+
+        align-content: center;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        input[type="submit"]:hover {
+            background-color: #43cea2; /* Slightly darker on hover */
+        }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        color: #fff;
+    }
+
+    .form-container {
+        background-color: #E3F2FD; /* Very light blue container */
+
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+    }
+
+    .back-button {
+        background-color: #74ebd5; /* Light green for back button */
+
+        color: #185a9d;
+        padding: 10px 20px;
+        font-size: 14px; /* Smaller size */
+
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+        margin: 10px 0;
+        display: inline-block;
+        text-align: center;
+    }
+
+        .back-button:hover {
+            background-color: #43cea2;
+        }
+
+    @@keyframes slideIn {
+
+        from {
+            transform: translateX(-100%);
+        }
+
+        to {
+            transform: translateX(0);
+        }
+    }
+
+    .text-danger {
+        color: red;
+    }
+</style>
+<h1>Attendance</h1>
+
+@if (TempData["SuccessMessage"] != null)
+
+{
+<div class="alert alert-success">
+
+    @TempData["SuccessMessage"]
+</div>}
+<div class="container mt-5">
+    <a href="@Url.Action("ManagerDashboard", "Project")" class="back-button">Back</a>
+    <div class="form-container">
+        <h2>Create Timesheet</h2>
+        <!-- Form to create a new timesheet -->
+
+        @using (Html.BeginForm(null, null, FormMethod.Post, new { autocomplete = "off" }))
+
+        {
+
+            @Html.AntiForgeryToken()
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+
+                                        @Html.LabelFor(model => model.ProjectID)
+
+                                        @Html.DropDownListFor(model => model.ProjectID, new SelectList(new List<int> { 1 }), "Select ID", new { @class = "form-control" })
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        @Html.LabelFor(model => model.Projectname)
+
+                                        @Html.DropDownListFor(model => model.Projectname, new SelectList(new List<string> { "Sentara" }), "Select Project Name", new { @class = "form-control" })
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        @Html.LabelFor(model => model.Task)
+
+                                        @Html.EditorFor(model => model.Task, new { @class = "form-control" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+
+                                            @Html.LabelFor(model => model.Datenow)
+
+                                            @Html.TextBoxFor(model => model.Datenow, new { @class = "form-control", type = "date", min = DateTime.Today.ToString("yyyy-MM-dd"), max = DateTime.Today.ToString("yyyy-MM-dd") })
+
+                                            @Html.ValidationMessageFor(model => model.Datenow, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        @Html.LabelFor(model => model.Category)
+
+                                        @Html.DropDownListFor(model => model.Category, new SelectList(new List<string> { "WFO", "WFH", "HYBRID" }), "Select Category", new { @class = "form-control" })
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        @Html.LabelFor(model => model.Hours)
+                                        <input type="text" class="form-control" value="9" readonly="readonly" /> <!-- Set default value to 9 and make it read-only -->
+                                    </div>
+                                    <div class="col-md-12">
+
+                                        @Html.LabelFor(model => model.Remarks)
+
+                                        @Html.TextAreaFor(model => model.Remarks, new { @class = "form-control" })
+                                    </div>
+                                    <div class="col-md-12 mt-3">
+                                        <input type="submit" value="Create" class="btn btn-success" />
+                                    </div>
+                                </div>
+                            </div>}
+    </div>
+</div> 

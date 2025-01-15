@@ -1,0 +1,140 @@
+﻿@{ ViewBag.Title = "About Us"; }
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Background Gradient */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(120deg, #185a9d, #43cea2); /* Gradient background */
+            color: #fff;
+            padding: 0;
+            margin: 0;
+            overflow-x: hidden; /* Prevents horizontal scroll during animation */
+        }
+
+        /* Centered Container */
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            animation: fadeSlideIn 1s ease-out forwards; /* Smooth entrance animation */
+            transform: translateY(50px);
+            opacity: 0;
+        }
+
+        /* Headings Styling */
+        h2, h3 {
+            color: #43cea2;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Paragraph Styling */
+        p {
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        /* List Styling */
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+            ul li:before {
+                content: "\2022";
+                color: #43cea2;
+                display: inline-block;
+                width: 1em;
+                margin-left: -1em;
+            }
+
+        /* Footer */
+        footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Back Button */
+        .back-button {
+            background-color: #43cea2;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+            display: block;
+            text-align: center;
+            text-decoration: none;
+        }
+
+            .back-button:hover, .back-button:focus {
+                background-color: #185a9d;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+                transform: scale(1.05); /* Slight zoom effect */
+            }
+
+        /* Bootstrap Lead Class */
+        .lead {
+            font-size: 1.25rem;
+            color: #93B1A6;
+        }
+
+        /* Margins */
+        .mt-5 {
+            margin-top: 3rem !important;
+        }
+
+        /* Animations */
+        @@keyframes fadeSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <h2>Welcome to My Project</h2>
+                <p class="lead">Your Go-To Solution for Efficient Workforce Management</p>
+                <p>My Project is a comprehensive attendance and leave management system designed to streamline and simplify workforce processes. We prioritize efficiency, accuracy, and user-friendly experiences for both employees and managers.</p>
+            </div>
+        </div>
+
+        <!-- ... (rest of your content) ... -->
+
+        <button class="back-button" onclick="window.location='@Url.Action("Index", "Project")'">Back to Home</button>
+    </div>
+
+    <footer>
+        <p>© 2025 SAMPHN. All rights reserved.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

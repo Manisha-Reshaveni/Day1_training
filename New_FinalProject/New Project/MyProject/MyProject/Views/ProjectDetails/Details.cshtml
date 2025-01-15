@@ -1,0 +1,33 @@
+﻿@model MyProject.Models.ProjectDetails
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+
+<h2>Project Details</h2>
+
+<dl class="dl-horizontal">
+    <dt>
+        Project ID
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.ProjectID)
+    </dd>
+
+    <dt>
+        Project Name
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.ProjectName)
+    </dd>
+   
+</dl>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { projectId = Model.ProjectID, projectName = Model.ProjectName }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+

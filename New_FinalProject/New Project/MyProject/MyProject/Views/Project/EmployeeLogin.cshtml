@@ -1,0 +1,124 @@
+﻿@model MyProject.Models.EmployeeDetails
+
+@{
+    ViewBag.Title = "EmployeeLogin";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(120deg, #185a9d, #43cea2);
+            color: #fff;
+            padding: 50px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #fff;
+            font-size: 36px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        form {
+            max-width: 300px;
+            margin: 0 auto;
+            background-color: linear-gradient(120deg, #185a9d, #43cea2);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border: 1px solid black;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            background-color: #040D12;
+            color: #93B1A6;
+            border: 1px solid #5C8374;
+        }
+
+        button {
+            background-color: #43cea2;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            button:hover {
+                background-color: #185a9d;
+            }
+
+        .validation-summary-errors {
+            color: #e74c3c;
+        }
+
+        .field-validation-error {
+            color: #e74c3c;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            background-color: #43cea2;
+            color: BLACK;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+        }
+
+            .back-button:hover {
+                background-color: #185a9d;
+            }
+    </style>
+
+</head>
+<body>
+    <a href="@Url.Action("Index", "Project")" class="back-button">Back</a>
+    <h2>Employee Login</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <form>
+            <label for="Name">EmployeeId</label>
+            @Html.TextBoxFor(model => model.EmpID, new { autocomplete = "off" })
+            @Html.ValidationMessageFor(model => model.Employeename, "", new { @class = "text-danger" })
+
+            <label for="Password">Password</label>
+            @Html.PasswordFor(model => model.Password)
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+            <button type="submit">Login</button>
+            @Html.ValidationSummary(true, "", new { @class = "validation-summary-errors" })
+        </form>
+    }
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

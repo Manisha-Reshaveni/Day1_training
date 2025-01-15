@@ -1,0 +1,137 @@
+﻿@model IEnumerable<MyProject.Models.Timesheet>
+
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: linear-gradient(120deg, #185a9d, #43cea2); /* Gradient background */
+        color: #93B1A6; /* Light text color */
+        padding: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 100vh;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color:linear-gradient(120deg, #185a9d, #43cea2); /* Darker background color */
+        color: black; /* Light text color */
+
+    }
+
+    th, td {
+        border: 2px solid black; /* Light border color */
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: black; /* Greenish background color for headers */
+        color: white; /* Dark text color for headers */
+    }
+
+    .action-links {
+        display: inline-block;
+        margin-right: 10px;
+        text-decoration: none;
+        color: white; /* Light text color for links */
+        padding: 8px 15px;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+        .action-links:hover {
+            background-color: #43cea2; /* Greenish background color on hover */
+            color: #040D12;
+        }
+
+    /* Specific button styles */
+    .edit-btn {
+        background-color: #007bff; /* Blue color for edit button */
+        color: #fff;
+    }
+
+        .edit-btn:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+    .delete-btn {
+        background-color: #dc3545; /* Red color for delete button */
+        color: #fff;
+    }
+
+        .delete-btn:hover {
+            background-color: #c82333; /* Darker red on hover */
+        }
+
+    .create-link {
+        display: block;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        text-decoration: none;
+        background-color: #4caf50; /* Green button color */
+        color: #040D12; /* Dark text color for the button */
+        padding: 10px;
+        border-radius: 5px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+        .create-link:hover {
+            background-color: #183D3D; /* Darker button color on hover */
+            color: #93B1A6; /* Light text color on hover */
+        }
+    .back-button {
+        position: absolute;
+        Top: 30px;
+        left: 30px; /* Moves back button to the left side */
+        background-color: #43cea2;
+        color: black;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+        .back-button:hover {
+            background-color: #185a9d;
+            color: black;
+        }
+</style>
+
+<!-- Display timesheets in a styled table -->
+<table>
+    <tr>
+        <th>Project ID</th>
+        <th>Project Name</th>
+        <th>Task</th>
+        <th>Date</th>
+        <th>Category</th>
+        <th>Hours</th>
+        <th>Remarks</th>
+       
+    </tr>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>@item.ProjectID</td>
+    <td>@item.Projectname</td>
+    <td>@item.task</td>
+    <td>@item.Datenow</td>
+    <td>@item.category</td>
+    <td>@item.Hours</td>
+    <td>@item.remarks</td>
+
+</tr>}
+</table>
+<div>
+<a href="@Url.Action("ManagerDashboard", "Project")" class="back-button">Back</a>
+    </div>
+
+<!-- Link to create a new timesheet with a styled button -->
+@*@Html.ActionLink("Create New", "Addattendence", null, new { @class = "create-link" })*@

@@ -1,0 +1,195 @@
+﻿@model MyProject.Models.Timesheet
+
+@{ ViewBag.Title = "Addattendance"; }
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Attendance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(120deg, #185a9d, #43cea2);
+            font-family: 'Roboto', sans-serif;
+            color: #93B1A6;
+            margin: 0;
+            padding: 50px;
+        }
+
+        h1 {
+            color: #000;
+            font-size: 3em;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .container {
+            background-color: #183D3D;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+
+        h2 {
+            color: black;
+            text-align: center;
+        }
+
+        label {
+            font-weight: bold;
+            color: white;
+        }
+
+        input[type="text"], input[type="date"], select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            display: inline-block;
+            border: 1px solid #93B1A6;
+            box-sizing: border-box;
+            border-radius: 5px;
+            background-color: white;
+            color: black;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: dodgerblue;
+            color: black;
+        }
+
+            input[type="submit"]:hover {
+                background-color: #185a9d;
+                color: black;
+            }
+
+        .form-container {
+            background-color: lightseagreen;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #43cea2;
+            color: black;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+            .back-button:hover {
+                background-color: #185a9d;
+                color: black;
+            }
+        /* Success message styling */
+        .success-message {
+            position: fixed;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #28a745;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-size: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+            opacity: 0;
+        }
+
+            .success-message.show {
+                bottom: 20px;
+                opacity: 1;
+            }
+        .text-danger{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Attendance</h1>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+<script>
+    window.onload = function () {
+        const successMessage = document.getElementById('successMessage');
+        successMessage.classList.add('show');
+        setTimeout(() => {
+            successMessage.classList.remove('show');
+        }, 3000); // Message disappears after 3 seconds
+    };
+</script>
+                <div id="successMessage" class="success-message">
+                    @TempData["SuccessMessage"]
+                </div>}
+
+    <div class="container mt-5">
+        <a href="@Url.Action("EmployeeDashboard", "Project")" class="back-button">Back</a>
+        <div class="form-container">
+            <h2>Create Timesheet</h2>
+            @using (Html.BeginForm(null, null, FormMethod.Post, new { autocomplete = "off" }))
+            {
+               @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            @Html.LabelFor(model => model.ProjectID)
+                            @Html.DropDownListFor(model => model.ProjectID, new SelectList(new List<int> { 1 }), "Select ID", new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-6">
+                            @Html.LabelFor(model => model.Projectname)
+                            @Html.DropDownListFor(model => model.Projectname, new SelectList(new List<string> { "Sentara" }), "Select Project Name", new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-6">
+                            @Html.LabelFor(model => model.task)
+                            @Html.EditorFor(model => model.task, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+
+                                @Html.LabelFor(model => model.Datenow)
+
+                                @Html.TextBoxFor(model => model.Datenow, new { @class = "form-control", type = "date", min = DateTime.Today.ToString("yyyy-MM-dd"), max = DateTime.Today.ToString("yyyy-MM-dd") })
+
+                                @Html.ValidationMessageFor(model => model.Datenow, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            @Html.LabelFor(model => model.category)
+                            @Html.DropDownListFor(model => model.category, new SelectList(new List<string> { "WFO", "WFH", "HYBRID" }), "Select Category", new { @class = "form-control" })
+                        </div>
+
+                        <div class="col-md-6">
+
+                            @Html.LabelFor(model => model.Hours)
+                            <input type="text" class="form-control" value="9" readonly="readonly" /> <!-- Set default value to 9 and make it read-only -->
+                        </div>
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.remarks)
+                            @Html.TextAreaFor(model => model.remarks, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-12 mt-3">
+                            <input type="submit" value="Create" class="btn btn-success" />
+                        </div>
+                    </div>
+                </div>            }
+        </div>
+    </div>
+</body>
+</html>

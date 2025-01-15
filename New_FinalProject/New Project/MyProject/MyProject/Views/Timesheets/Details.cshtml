@@ -1,0 +1,158 @@
+﻿﻿@model MyProject.Models.Timesheet
+
+@{
+    ViewBag.Title = "Details";
+}
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(120deg, #185a9d, #43cea2); /* Gradient background */
+        color: #93B1A6;
+        margin: 0;
+        padding: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 100vh;
+    }
+
+    h2, h4 {
+        color: #000; /* Black heading text */
+        text-align: center;
+    }
+
+    .details-container {
+        background-color: #183D3D; /* Container background */
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .details-list dt {
+        font-weight: bold;
+        color: #5C8374; /* Field label color */
+    }
+
+    .details-list dd {
+        margin-bottom: 10px;
+        color: #93B1A6; /* Field value color */
+    }
+
+    .action-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .edit-button {
+        text-decoration: none;
+        background-color: #4caf50; /* Green button for Edit */
+        color: #040D12; /* Dark text */
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+        .edit-button:hover {
+            background-color: #183D3D; /* Hover effect */
+            color: #93B1A6;
+            transform: scale(1.05);
+        }
+
+        .edit-button:active {
+            transform: scale(0.95);
+        }
+
+    .back-button {
+        text-decoration: none;
+        background-color: #FF6363; /* Red button for Back */
+        color: #040D12; /* Dark text */
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+        .back-button:hover {
+            background-color: #e55353; /* Darker hover effect */
+            color: #fff; /* White text */
+            transform: scale(1.05);
+        }
+
+        .back-button:active {
+            transform: scale(0.95);
+        }
+ 
+</style>
+
+<h2>Details</h2>
+
+<div>
+    <h4>Timesheet</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Projectname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Projectname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.task)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.task)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Datenow)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Datenow)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.category)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.category)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hours)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hours)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.remarks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.remarks)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProjectID }) 
+
+</p>
+<div>
+
+    <a href="@Url.Action("Index)")" class="back-button">Back</a>
+
+</div>

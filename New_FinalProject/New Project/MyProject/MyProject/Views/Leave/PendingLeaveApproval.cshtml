@@ -1,0 +1,281 @@
+﻿@model IEnumerable<MyProject.Models.EmployeeLeaveRequest>
+
+@{ ViewBag.Title = "Pending Leave Approval"; }
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<style>
+
+    body {
+        padding: 20px;
+        background: linear-gradient(120deg, #185a9d, #43cea2); /* Gradient background */
+
+        font-family: 'Arial', sans-serif;
+        color: black; /* Light text color */
+    }
+
+    h2 {
+        margin-bottom: 20px;
+        color: black; /* Dark green text color */
+
+        text-align: center;
+    }
+
+    .table th,
+    .table td {
+        text-align: center;
+    }
+
+    .thead-dark th {
+        background-color: #040D12; /* Dark green background for table header */
+    }
+
+    .table-bordered,
+    .table-bordered th,
+    .table-bordered td {
+        border-color: #183D3D; /* Dark green border color for table */
+    }
+
+    .table-striped tbody tr:nth-of-type() {
+        background-color: #fff; /* Dark background for odd rows */
+    }
+
+    .btn-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .btn-pending {
+        color: #fff;
+        background-color: #dc3545;
+        border-color: #dc3545; /* Red for pending button */
+    }
+
+    .btn-accept {
+        color: #fff;
+        background-color: #28a745;
+        border-color: #28a745; /* Green for accept button */
+    }
+
+    .btn-reject {
+        color: #fff;
+        background-color: #dc3545;
+        border-color: #dc3545; /* Red for reject button */
+    }
+
+    /* Back button */
+
+    .back-button {
+        position: absolute;
+        top: 50px;
+        left: 50px; /* Moves back button to the left side */
+
+        background-color: darkseagreen;
+        color: black;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+        .back-button:hover {
+            background-color: #185a9d;
+            color: black;
+        }
+
+    /* Table action buttons */
+
+    .edit-button {
+        background-color: #007BFF; /* Blue for edit */
+
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+        .edit-button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+
+            transform: scale(1.05);
+        }
+
+    .delete-button {
+        background-color: #FF6363; /* Red for delete */
+
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+        .delete-button:hover {
+            background-color: #e55353; /* Darker red on hover */
+
+            transform: scale(1.05);
+        }
+
+    /* Disable autocomplete styles */
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 30px #040D12 inset !important; /* Match dark input background */
+
+        font-size: 16px; /* Adjust font size */
+    }
+</style>
+<h2>Pending Leave Approval</h2>
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Leave Type</th>
+                <th>From Date</th>
+                <th>To Date</th>
+                <th>Days of Leave</th>
+                <th>Reason</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var leaveRequest in Model)
+
+            {
+<tr id="row_@leaveRequest.Id">
+    <td>@leaveRequest.LeaveType</td>
+    <td>@leaveRequest.FromDate.ToShortDateString()</td>
+    <td>@leaveRequest.ToDate.ToShortDateString()</td>
+    <td>@leaveRequest.DaysOfLeave</td>
+    <td>@leaveRequest.Reason</td>
+    <td id="actionCell_@leaveRequest.Id">
+        <div class="btn-container">
+            <a href="#" class="btn btn-success btn-lg action-button" onclick="confirmAction('accept', @leaveRequest.Id)">
+
+                Accept
+            </a>
+            <button class="btn btn-reject btn-lg action-button" onclick="confirmAction('reject', @leaveRequest.Id)">
+
+                Reject
+            </button>
+        </div>
+    </td>
+</tr>}
+        </tbody>
+    </table>
+</div>
+<a href="@Url.Action("ManagerDashboard", "Project")" class="btn btn-primary btn-lg action-button">
+
+    Back
+</a>
+<script>
+
+    function confirmAction(action, leaveRequestId) {
+
+        let confirmation = confirm("Are you sure you want to " + action + " this leave request?");
+
+        if (confirmation) {
+
+            if (action === 'accept') {
+
+                acceptLeave(leaveRequestId);
+
+            } else if (action === 'reject') {
+
+                rejectLeave(leaveRequestId);
+
+            }
+
+        }
+
+    }
+
+    function acceptLeave(leaveRequestId) {
+
+        // Send an AJAX request to the backend
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.open("POST", "/Leave/AcceptLeave/" + leaveRequestId, true);
+
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+        xhr.onload = function () {
+
+            if (xhr.status === 200) {
+
+                // Display "Accepted" in the action cell and remove the row
+
+                var actionCell = document.getElementById("actionCell_" + leaveRequestId);
+
+                actionCell.innerHTML = "Accepted";
+
+                setTimeout(function () {
+
+                    // Remove the row from the table
+
+                    var row = document.getElementById("row_" + leaveRequestId);
+
+                    row.parentNode.removeChild(row);
+
+                }, 2000); // 2 seconds delay to show "Accepted"
+
+            } else {
+
+                alert('Error accepting leave.');
+
+            }
+
+        };
+
+        xhr.send();
+
+    }
+
+    function rejectLeave(leaveRequestId) {
+
+        // Send an AJAX request to the backend
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.open("POST", "/Leave/RejectLeave/" + leaveRequestId, true);
+
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+        xhr.onload = function () {
+
+            if (xhr.status === 200) {
+
+                // Display "Rejected" in the action cell and remove the row
+
+                var actionCell = document.getElementById("actionCell_" + leaveRequestId);
+
+                actionCell.innerHTML = "Rejected";
+
+                setTimeout(function () {
+
+                    // Remove the row from the table
+
+                    var row = document.getElementById("row_" + leaveRequestId);
+
+                    row.parentNode.removeChild(row);
+
+                }, 2000); // 2 seconds delay to show "Rejected"
+
+            } else {
+
+                alert('Error rejecting leave.');
+
+            }
+
+        };
+
+        xhr.send();
+
+    }
+</script> 

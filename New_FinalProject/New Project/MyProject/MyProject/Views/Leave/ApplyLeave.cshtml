@@ -1,0 +1,302 @@
+﻿@model MyProject.Models.EmployeeLeaveRequest
+
+@{ ViewBag.Title = "Apply Leave"; }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+
+        body {
+            text-align: center;
+            padding: 50px;
+            position: relative;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(120deg, #185a9d, #43cea2);
+            color: #fff;
+            margin: 0;
+        }
+
+        h2 {
+            color: black; /* Consistent heading color */
+
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: linear-gradient(120deg, #185a9d, #43cea2);
+            color: #93B1A6;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Box shadow for depth */
+
+            overflow: hidden;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: ghostwhite;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            display: inline-block;
+            border: 1px solid #93B1A6;
+            box-sizing: border-box;
+            border-radius: 5px;
+            background-color: white; /* Dark background to match overall theme */
+
+            color: black;
+        }
+
+        input[type="submit"] {
+            background-color: #43cea2; /* Consistent color with your theme */
+
+            color: #040D12;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        /*input[type="submit"]:hover {
+                background-color: #185a9d;*/ /* Hover effect consistent with your design */
+        /*}*/
+
+        .text-danger {
+            color: #FF6363;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px; /* Back button on the left side */
+
+            background-color: #43cea2; /* Color to match with your theme */
+
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            color: #040D12;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+            .back-button:hover {
+                background-color: #185a9d; /* Hover effect */
+            }
+
+        /* Disable auto-fill styles */
+
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:active {
+            transition: background-color 5000s ease-in-out 0s;
+            color: #93B1A6 !important;
+            border: 1px solid #183D3D !important;
+            background-color: #040D12 !important;
+        }
+    </style>
+</head>
+<body>
+    <a href="@Url.Action("EmployeeDashboard", "Project")" class="back-button">Back</a>
+    <h2>Apply Leave</h2>
+
+    @if (TempData["SuccessMessage"] != null)
+
+    {
+<div class="alert alert-success">
+
+    @TempData["SuccessMessage"]
+</div>      }
+
+    @using (Html.BeginForm())
+
+    {
+
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-container">
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.LeaveType)
+
+                        @Html.DropDownListFor(model => model.LeaveType, GetLeaveTypes(), "Select Leave Type", new { @class = "form-control" })
+
+                        @Html.ValidationMessageFor(model => model.LeaveType, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.FromDate)
+
+                        @Html.TextBoxFor(model => model.FromDate, new { @class = "form-control", type = "date", id = "FromDate" })
+
+                        @Html.ValidationMessageFor(model => model.FromDate, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.ToDate)
+
+                        @Html.TextBoxFor(model => model.ToDate, new { @class = "form-control", type = "date", id = "ToDate" })
+
+                        @Html.ValidationMessageFor(model => model.ToDate, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.DaysOfLeave)
+
+                        @Html.TextBoxFor(model => model.DaysOfLeave, new { @class = "form-control", id = "DaysOfLeave", @readonly = "readonly" })
+
+                        @Html.ValidationMessageFor(model => model.DaysOfLeave, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.Session)
+
+                        @Html.DropDownListFor(model => model.Session, GetSessions(), "Select Session", new { @class = "form-control" })
+
+                        @Html.ValidationMessageFor(model => model.Session, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.ApproverName)
+
+                        @Html.TextBoxFor(model => model.ApproverName, new { @class = "form-control" })
+
+                        @Html.ValidationMessageFor(model => model.ApproverName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.ContactAddress)
+
+                        @Html.TextBoxFor(model => model.ContactAddress, new { @class = "form-control" })
+
+                        @Html.ValidationMessageFor(model => model.ContactAddress, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.ContactNumber)
+
+                        @Html.TextBoxFor(model => model.ContactNumber, new { @class = "form-control" })
+
+                        @Html.ValidationMessageFor(model => model.ContactNumber, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.CCTo)
+
+                        @Html.TextBoxFor(model => model.CCTo, new { @class = "form-control" })
+
+                        @Html.ValidationMessageFor(model => model.CCTo, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.Reason)
+
+                        @Html.TextAreaFor(model => model.Reason, new { @class = "form-control" })
+
+                        @Html.ValidationMessageFor(model => model.Reason, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Submit" class="btn btn-primary" />
+                    </div>
+                </div>}
+    @functions { private SelectList GetLeaveTypes()
+
+                {
+
+                    var leaveTypes = new List<string>
+
+                            {
+
+                "Adoption Leave",
+
+                "Bereavement Leave",
+
+                "Casual / Sick Leave",
+
+                "LOP",
+
+                "Maternity Leave",
+
+                "Miscarriage Leave",
+
+                "Privilege Leave"
+
+            };
+
+                    return new SelectList(leaveTypes);
+
+                }
+
+                private SelectList GetSessions()
+
+                {
+
+                    var sessions = new List<string>
+
+                            {
+
+                "Full Day",
+
+                "Half Day / First Half",
+
+                "Half Day / Second Half"
+
+            };
+
+                    return new SelectList(sessions);
+
+                } }
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
+    <script>
+
+        document.getElementById("FromDate").addEventListener("change", calculateDays);
+
+        document.getElementById("ToDate").addEventListener("change", calculateDays);
+
+        function calculateDays() {
+
+            const fromDate = new Date(document.getElementById("FromDate").value);
+
+            const toDate = new Date(document.getElementById("ToDate").value);
+
+            if (fromDate && toDate && fromDate <= toDate) {
+
+                const diffTime = Math.abs(toDate - fromDate);
+
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1; // +1 to include both dates
+
+                document.getElementById("DaysOfLeave").value = diffDays;
+
+            } else {
+
+                document.getElementById("DaysOfLeave").value = "";
+
+            }
+
+        }
+    </script>
+</body>
+</html> 

@@ -1,0 +1,188 @@
+﻿﻿@model MyProject.Models.Timesheet
+
+@{ ViewBag.Title = "Edit"; }
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: linear-gradient(120deg, #185a9d, #43cea2); /* Gradient background */
+        color: #93B1A6; /* Light text color */
+        margin: 0;
+        padding: 50px;
+    }
+
+    h2 {
+        color: #000; /* Black text color for headings */
+        text-align: center;
+    }
+
+    h3 {
+        color: dodgerblue; /* Black text color for headings */
+        text-align: center;
+    }
+
+    .form-horizontal {
+        background-color: #F0F8FF; /* Form container background color */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin: 0 auto;
+        max-width: 600px;
+        color: dodgerblue;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .control-label {
+        color: dodgerblue; /* Greenish text color for labels */
+        font-weight: bold;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+        display: inline-block;
+        border: 1px solid #93B1A6; /* Border matching the theme */
+        border-radius: 5px;
+        background-color: antiquewhite; /* Dark input background */
+        color: black; /* Light input text color */
+        font-size: 16px;
+    }
+
+        .form-control:focus {
+            border-color: #43cea2; /* Highlighted border on focus */
+            outline: none;
+            box-shadow: 0 0 5px rgba(67, 206, 162, 0.5);
+        }
+
+    .text-danger {
+        color: #FF6363; /* Red color for error messages */
+    }
+
+    input[type="submit"] {
+        background-color: #5C8374; /* Button background color */
+        color: #040D12; /* Button text color */
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        input[type="submit"]:hover {
+            background-color: #93B1A6; /* Hover background color */
+            color: #040D12; /* Hover text color */
+        }
+
+    a {
+        text-decoration: none;
+        color: #93B1A6;
+    }
+
+        a:hover {
+            color: #5C8374; /* Hover color for links */
+        }
+
+    .col-md-offset-2 {
+        margin-left: 16.66666667%;
+    }
+
+    .btn-default {
+        background-color: #4caf50; /* Green button color */
+        color: #040D12; /* Dark text color */
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-transform: uppercase;
+    }
+
+        .btn-default:hover {
+            background-color: #183D3D; /* Darker hover effect */
+            color: #93B1A6; /* Light text on hover */
+        }
+
+    .back-link {
+        display: block;
+        margin-top: 20px;
+        text-align: center;
+        color: #93B1A6;
+        font-weight: bold;
+    }
+
+        .back-link:hover {
+            color: #5C8374; /* Hover effect for back link */
+        }
+</style>
+
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+@Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <h3>Timesheet</h3>
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.ProjectID)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Projectname, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Projectname, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Projectname, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.task, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.task, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.task, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Datenow, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Datenow, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Datenow, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.category, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.category, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.category, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Hours, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Hours, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Hours, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.remarks, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.remarks, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.remarks, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Save" class="btn btn-default" />       |
+
+                            @Html.ActionLink("Back to List", "Index")
+                        </div>
+                    </div>
+                </div>}

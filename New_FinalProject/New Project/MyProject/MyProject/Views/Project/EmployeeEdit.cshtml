@@ -1,0 +1,160 @@
+﻿@model MyProject.Models.EmployeeDetails
+
+@{ ViewBag.Title = "EmployeeEdit"; }
+<style>
+
+body {
+    background: linear-gradient(120deg, #185a9d, #43cea2); /* Gradient background */
+    color: #FFFFFF; /* Brighter text color for better readability */
+    padding: 50px; /* Increased padding for better visual appeal */
+    font-family: 'Arial', sans-serif;
+}
+
+h2 {
+    color: black;
+    font-size: 2em; /* Increased font size for better visibility */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+    .form-container {
+        max-width: 800px; /* Increased maximum width for a larger form */
+        margin: 0 auto; /* Center the form horizontally */
+        background-color: linear-gradient(120deg, #185a9d, #43cea2);
+        color: #FFFFFF; /* Brighter text color for better readability */
+        padding: 30px;
+        border: 2px solid #183D3D;
+        border-radius: 12px; /* Increased border radius for a smoother look */
+        margin-top: 50px; /* Increased margin for better spacing */
+    }
+
+.control-label {
+    color: black;
+    font-size: 1.2em; /* Increased font size */
+}
+
+.form-control {
+    background-color: white;
+    color: black; /* Brighter text color for better readability */
+    border: 1px solid #183D3D;
+    padding: 15px; /* Increased padding for better spacing */
+    font-size: 1.2em; /* Increased font size */
+    margin-bottom: 15px; /* Increased bottom margin */
+}
+
+.btn-default {
+    background-color: #183D3D;
+    color: #FFFFFF; /* Brighter text color for better readability */
+    border: 1px solid #5C8374;
+    padding: 15px; /* Increased padding for better spacing */
+    font-size: 1.2em; /* Increased font size for buttons */
+    border-radius: 5px; /* Rounded corners for a smoother look */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-default:hover {
+    background-color: #5C8374;
+    color: #040D12;
+}
+
+.text-danger {
+    color: #FF6363;
+    font-size: 1.2em; /* Increased font size for error messages */
+}
+
+.back-button {
+    position: absolute;
+    top: 10px;
+    left: 10px; /* Top-left position */
+    background-color: #5C8374; /* Green background */
+    color: #040D12; /* Dark text color */
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #185a9d; /* Blue background on hover */
+    color: #FFFFFF;
+}
+
+.create-button {
+    position: absolute;
+    top: 10px;
+    right: 10px; /* Top-right position */
+    background-color: #4caf50; /* Green color for create button */
+    color: #FFFFFF;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.create-button:hover {
+    background-color: #3e8e41; /* Darker green on hover */
+}
+
+.back-to-list {
+    margin-top: 20px;
+    color: black;
+    font-size: 1.2em; /* Increased font size */
+    text-decoration: none;
+    display: inline-block; /* Ensures consistent alignment */
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.back-to-list:hover {
+    color: #93B1A6;
+}
+
+</style>
+
+<h2>EmployeeEdit</h2>
+
+<div class="form-container">
+    @using (Html.BeginForm())
+    {
+@Html.AntiForgeryToken()
+
+                <h4>EmployeeDetails</h4>
+                                <hr />
+                                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                                                @Html.HiddenFor(model => model.EmpID)
+
+                                                                                <div class="form-group">
+                                                                                    @Html.LabelFor(model => model.Employeename, htmlAttributes: new { @class = "control-label" })
+                                                                                    @Html.EditorFor(model => model.Employeename, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                    @Html.ValidationMessageFor(model => model.Employeename, "", new { @class = "text-danger" })
+                                                                                </div>
+
+                                                                                                <div class="form-group">
+                                                                                                    @Html.LabelFor(model => model.Grade, htmlAttributes: new { @class = "control-label" })
+                                                                                                    @Html.EditorFor(model => model.Grade, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                                    @Html.ValidationMessageFor(model => model.Grade, "", new { @class = "text-danger" })
+                                                                                                </div>
+
+                                                                                                                <div class="form-group">
+                                                                                                                    @Html.LabelFor(model => model.Designation, htmlAttributes: new { @class = "control-label" })
+                                                                                                                    @Html.EditorFor(model => model.Designation, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                                                    @Html.ValidationMessageFor(model => model.Designation, "", new { @class = "text-danger" })
+                                                                                                                </div>
+
+                                                                                                                                <div class="form-group">
+                                                                                                                                    <input type="submit" value="Save" class="btn btn-default" />
+                                                                                                                                </div>}
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "EmployeeIndex", null, new { @class = "back-to-list" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,103 @@
+﻿@model MyProject.Models.ProjectDetails
+@{ ViewBag.Title = "ProjectDisplay"; }
+
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: linear-gradient(120deg, #185a9d, #43cea2); /* Gradient background */
+        color: black; /* Light text color */
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+    }
+
+    h2 {
+        color: black; /* Greenish text color */
+        font-size: 3em; /* Larger font size */
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .details-container {
+        background-color: white; /* Dark background color for the details section */
+        color: black; /* Light text color */
+        border-radius: 20px;
+        padding: 40px;
+        width: 60%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow around the section */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border:2px solid black;
+    }
+
+        .details-container h4 {
+            color: black; /* Greenish text color */
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+    .dl-horizontal {
+        background-color: transparent;
+        color: #93B1A6; /* Light text color */
+        border: none;
+        width: 100%;
+    }
+
+    dt {
+        color: black; /* Greenish text color for labels */
+        font-weight: bold;
+        font-size: 1.2em; /* Larger font size for labels */
+        margin-bottom: 10px;
+    }
+
+    dd {
+        margin-left: 0;
+        margin-bottom: 15px;
+        font-size: 1.2em; /* Larger font size for details */
+        color:darkolivegreen;
+    }
+
+    .action-links {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    a {
+        color: #5C8374; /* Greenish text color for links */
+        margin-right: 15px;
+        font-size: 1.2em; /* Larger font size for links */
+        text-decoration: none;
+    }
+
+        a:hover {
+            color: #93B1A6; /* Lighter color on hover */
+        }
+</style>
+
+<h2>Project Display</h2>
+
+<div class="details-container">
+    <h4>Project Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.ProjectName)</dt>
+        <dd>@Html.DisplayFor(model => model.ProjectName)</dd>
+    </dl>
+
+    <div class="action-links">
+        @Html.ActionLink("Edit", "ProjectEdit", new { id = Model.ProjectID }) |
+        @Html.ActionLink("Back to List", "ProjectIndex")
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
